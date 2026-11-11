@@ -1,0 +1,13 @@
+GIMP Palette
+Name: cat-break template
+Columns: 7
+#
+# Draw the cat using ONLY these colors so every breed can recolor it.
+# Import into Piskel: Palettes panel -> (gear) -> Import -> choose this file.
+ 74  50  40	outline
+240 163  94	fur
+217 135  63	fur shadow
+196 106  43	patches (stripes / spots)
+251 227 196	chest (belly, muzzle, paws)
+247 178 196	nose (and inner ears)
+107 143  58	eye
