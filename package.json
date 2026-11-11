@@ -1,0 +1,14 @@
+{
+  "name": "cat-break",
+  "version": "0.1.0",
+  "description": "A pixel cat that walks onto your screen and reminds you to take breaks.",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/launch.js",
+    "dev": "node scripts/launch.js --dev"
+  },
+  "devDependencies": {
+    "electron": "^45.3.0"
+  }
+}
