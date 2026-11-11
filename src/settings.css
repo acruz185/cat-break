@@ -1,0 +1,106 @@
+:root {
+  --ink: #3b2f2f;
+  --paper: #fffaf5;
+  --bg: #fff4f7;
+  --accent: #f4a7c0;
+  --accent-soft: #ffe9f0;
+}
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+main { padding: 20px 24px 24px; }
+
+h1 { margin: 0 0 12px; font-size: 24px; }
+h2 { margin: 0 0 10px; font-size: 15px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+section {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 3px 3px 0 var(--ink);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.row { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+
+input[type="number"] {
+  width: 64px;
+  font: inherit;
+  padding: 4px 6px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+}
+
+/* Radio cards: hide the dot, show selection with a border */
+.swatches, .breeds { display: flex; flex-wrap: wrap; gap: 10px; }
+.choice { position: relative; cursor: pointer; }
+.choice input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+.choice .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  font-size: 13px;
+}
+.choice input:checked + .card { border-color: var(--ink); background: var(--accent-soft); }
+.choice input:focus-visible + .card { outline: 2px dashed var(--ink); outline-offset: 2px; }
+
+.chip {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 2px solid var(--ink);
+  background: #fff; /* the tint is drawn on top of white, like on a screen */
+  position: relative;
+  overflow: hidden;
+}
+.chip span { position: absolute; inset: 0; }
+.chip input[type="color"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.breeds canvas {
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+}
+.surprise {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+footer { display: flex; align-items: center; gap: 8px; }
+
+button {
+  font: inherit;
+  color: var(--ink);
+  background: white;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--ink);
+  padding: 6px 14px;
+  cursor: pointer;
+}
+button:hover { background: var(--accent-soft); }
+button:active { transform: translate(2px, 2px); box-shadow: none; }
+button[type="submit"] { background: var(--accent); }
+
+#status { font-size: 13px; }
