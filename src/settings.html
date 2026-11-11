@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:">
+  <title>cat-break settings</title>
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <main>
+    <h1>cat-break</h1>
+
+    <form id="form">
+      <section>
+        <h2>Timing</h2>
+        <label class="row">
+          Break every
+          <input type="number" id="interval" min="1" max="240" step="1" required>
+          minutes
+        </label>
+        <label class="row">
+          Cat naps for
+          <input type="number" id="nap" min="1" max="30" step="1" required>
+          minutes
+        </label>
+      </section>
+
+      <section>
+        <h2>Screen tint</h2>
+        <div id="tints" class="swatches"></div>
+      </section>
+
+      <section>
+        <h2>Cat</h2>
+        <div id="breeds" class="breeds"></div>
+      </section>
+
+      <footer>
+        <button type="submit">Save</button>
+        <button type="button" id="preview">Save &amp; try a break</button>
+        <span id="status" role="status"></span>
+      </footer>
+    </form>
+  </main>
+
+  <script src="theme.js"></script>
+  <script src="sprites.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>

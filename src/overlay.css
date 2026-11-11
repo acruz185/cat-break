@@ -1,0 +1,164 @@
+:root {
+  --tint: rgba(255, 182, 206, 0.55);
+  --ink: #3b2f2f;
+  --paper: #fffaf5;
+  --accent: #f4a7c0;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: var(--ink);
+  user-select: none;
+}
+
+/* The pastel wash over the whole screen */
+#tint {
+  position: fixed;
+  inset: 0;
+  background: var(--tint);
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+body.visible #tint { opacity: 1; }
+
+/* Everything else fades with the tint (used by both normal exit and Esc skip) */
+.fade { opacity: 0; transition: opacity 0.6s ease; }
+body.visible .fade { opacity: 1; }
+
+/* Emergency skip: hold Esc for 3 seconds */
+#skip-hint {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 140px;
+  font-size: 13px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+body.visible #skip-hint { opacity: 0.85; }
+#skip-hint kbd {
+  font: inherit;
+  font-weight: 700;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+#skip-bar {
+  height: 4px;
+  width: 0;
+  margin-top: 6px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: width 0.2s ease;
+}
+#skip-hint.holding #skip-bar {
+  width: 100%;
+  transition: width 3s linear; /* matches SKIP_HOLD_MS in overlay.js */
+}
+
+/* The cat and its speech bubble move together */
+#cat-wrap {
+  position: absolute;
+  bottom: 12vh;
+  left: 0;
+  width: 128px;
+}
+
+#cat {
+  display: block;
+  width: 128px;  /* 32px art drawn at 4x */
+  height: 128px;
+  image-rendering: pixelated; /* keep pixels crisp instead of blurry */
+}
+
+#bubble {
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 320px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 12px 16px;
+  text-align: center;
+}
+#bubble::after { /* little tail pointing at the cat */
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  margin-left: -8px;
+  border: 8px solid transparent;
+  border-top-color: var(--ink);
+  border-bottom: 0;
+}
+#bubble p { margin: 0 0 4px; font-size: 16px; }
+
+[hidden] { display: none !important; }
+
+button {
+  font: inherit;
+  color: var(--ink);
+  background: white;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--ink);
+  padding: 6px 14px;
+  margin: 6px 4px 0;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { background: #ffe9f0; }
+button:active:not(:disabled) { transform: translate(2px, 2px); box-shadow: none; }
+button:disabled { opacity: 0.5; cursor: default; }
+
+/* Sleeping "z z Z" above the cat */
+#cat-wrap.sleeping::before {
+  content: "z z Z";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-weight: 700;
+  font-size: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(-10px); opacity: 1; }
+}
+
+/* Center card for the "not now" mini tasks */
+#activity {
+  position: fixed;
+  top: 18vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 380px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 24px;
+  text-align: center;
+}
+#activity h2 { margin: 0 0 8px; }
+
+.breath-circle {
+  width: 80px;
+  height: 80px;
+  margin: 40px auto;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 4s ease-in-out;
+}
+.breath-circle.in { transform: scale(2); }
+
+.big-timer { font-size: 48px; font-weight: 700; margin: 12px 0 0; }
